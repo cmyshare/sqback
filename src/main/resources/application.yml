@@ -1,0 +1,79 @@
+server:  #配置服务端口，生产环境dev
+  port: 8081
+  profiles:
+    active: dev
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver # 连接mysql数据库
+    url: jdbc:mysql://139.196.72.132:3306/scorequery?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: scorequery
+    password: 123456
+    # 使用druid数据源 配置druid？
+    type: com.alibaba.druid.pool.DruidDataSource
+#    druid:
+#      initial-size: 5
+#      min-idle: 5
+#      max-active: 20
+#      # 配置获取连接等待超时的时间
+#      max-wait: 60000
+#        # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#      time-between-eviction-runs-millis: 60000
+#        # 配置一个连接在池中最小生存的时间，单位是毫秒
+#      min-evictable-idle-time-millis: 300000
+  # 配置redis
+  redis:
+    # 超时时间
+    timeout: 30000ms
+    # 服务器地址
+    host: 120.27.217.94
+    # 服务器端口
+    port: 6379
+    # 数据库
+    database: 0
+    # 密码
+    password: root
+    # 配置客户端
+    jedis:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-active: 1024
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-wait: -1
+        # 连接池中的最大空闲连接 默认 8
+        max-idle: 200
+        # 连接池中的最小空闲连接 默认 0
+        min-idle: 5
+#    lettuce:
+#      pool:
+#        # 最大连接数，默认为8
+#        max-active: 1024
+#        # 最大连接阻塞等待时间，默认-1
+#        max-wait: -1
+#        # 最大空闲连接
+#        max-idle: 200
+#        # 最小空闲连接
+#        min-idle: 5
+
+
+
+# 配置mybatis
+mybatis:
+  # 实体类的别名。包下面的实体类都可使用别名。com.sqback.dao.entity.User --> User
+  type-aliases-package: com.sqback.dao.entity
+  # mapper的位置，就是.xml文件的位置，默认去mapper接口类所在的包中去找
+  mapper-locations: classpath:com/sqback/dao/mapper/*.xml
+  # 配置文件的位置，这里我mybatis的配置文件什么都没有写，但是还是需要有这个文件。
+  config-location: classpath:mybatis-config.xml
+#  configuration:
+#    # 自动驼峰命名
+#    map-underscore-to-camel-case: false
+
+# 打印mybatis sql语句
+logging:
+  level:
+    com.sqback.dao.mapper: debug
+
+
+
+

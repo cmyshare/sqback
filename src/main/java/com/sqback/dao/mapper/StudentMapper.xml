@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sqback.dao.mapper.StudentScoreMapper" >
+    <select id="findStudentScore" resultType="StudentScore">
+        select sid,score from studentscore where sid=#{sid};
+    </select>
+</mapper>
